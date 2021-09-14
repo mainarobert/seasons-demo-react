@@ -1,32 +1,27 @@
 import React from 'react';
 
 class App extends React.Component{
-  constructor(props){
-    super(props);
+  
+  //state object
+  state = {lat : null, errorMessage : ''}
 
-    //state object
-    this.state = {lat : null, errorMessage : ''}
-
-
-  }
-
-componentDidMount () {
-  navigator.geolocation.getCurrentPosition(
-    position => {
-      console.log(position)
+  componentDidMount () {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        console.log(position)
       
-      // To update state object we called setState
-      this.setState({ lat: position.coords.latitude })
-    },
+        // To update state object we called setState
+        this.setState({ lat: position.coords.latitude })
+      },
 
-    error=> {
-      console.log(error)
+      error=> {
+        console.log(error)
         
-      // To update state object we called setState
-      this.setState ({ errorMessage: error.message })
-    } 
-  )
-}
+        // To update state object we called setState
+        this.setState ({ errorMessage: error.message })
+     } 
+    )
+  }
 
   render(){
     if (this.state.errorMessage && !this.state.lat) {
