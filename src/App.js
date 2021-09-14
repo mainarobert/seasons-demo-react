@@ -7,22 +7,26 @@ class App extends React.Component{
     //state object
     this.state = {lat : null, errorMessage : ''}
 
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        console.log(position)
-      
-        // To update state object we called setState
-        this.setState({ lat: position.coords.latitude })
-      },
 
-      error=> {
-        console.log(error)
-        
-         // To update state object we called setState
-        this.setState ({ errorMessage: error.message })
-      } 
-    )
   }
+
+componentDidMount () {
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      console.log(position)
+      
+      // To update state object we called setState
+      this.setState({ lat: position.coords.latitude })
+    },
+
+    error=> {
+      console.log(error)
+        
+      // To update state object we called setState
+      this.setState ({ errorMessage: error.message })
+    } 
+  )
+}
 
   render(){
     if (this.state.errorMessage && !this.state.lat) {
