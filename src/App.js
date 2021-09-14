@@ -6,6 +6,7 @@ class App extends React.Component{
   //state object
   state = {lat : null, errorMessage : ''}
 
+  // GEOlocation api get latitude
   componentDidMount () {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -28,7 +29,7 @@ class App extends React.Component{
     if (this.state.errorMessage && !this.state.lat) {
       return (
         <div>
-          <h2>error : {this.state.errorMessage}</h2>
+          <h2>error : {this.state.errorMessage} </h2>
         </div>
       )
     }
